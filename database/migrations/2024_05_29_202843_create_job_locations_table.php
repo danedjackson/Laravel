@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('job_locations', function (Blueprint $table) {
             $table->id();
-            $table->integer('job_id');
+            $table->unsignedBigInteger('job_id');
             $table->foreign('job_id')->references('id')->on('job_listings')->onDelete('cascade');
             $table->string('address_line_1');
             $table->string('address_line_2')->nullable();
