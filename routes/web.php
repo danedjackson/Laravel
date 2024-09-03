@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::get('/jobs', function() {
     // Eager loading
-    $jobs = Job::with('employer')->latest()->paginate(5);
+    $jobs = Job::with('employer')->latest()->simplePaginate(5);
 
     // Lazy Loading
     // $jobs = Job::all();
@@ -28,6 +28,10 @@ Route::get('jobs/create', function() {
 
 Route::post('/jobs', function() {
     //Validations here
+    request()->validate([
+        'title' => ['required', 'min:3'],
+        'salary' => ['required']
+    ]);
 
     Job::create([
         'title' => request('title'),

@@ -27,21 +27,36 @@
                     <div class="sm:col-span-4">
                         <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Job Title</label>
                         <div class="mt-2">
-                        <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                            <input type="text" name="title" id="title" autocomplete="title" class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Shift Leader">
-                        </div>
+                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <input type="text" name="title" id="title" autocomplete="title" class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Shift Leader" required>
+                            </div>
+                            @error('title')
+                                <p class="text-xs text-red-500 font-semibold">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="sm:col-span-4">
                         <label for="salary" class="block text-sm font-medium leading-6 text-gray-900">Job Salary</label>
                         <div class="mt-2">
-                        <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                            <input type="text" name="salary" id="salary" class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="$28,879.00">
+                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <input type="text" name="salary" id="salary" class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="$28,879.00" required>
+                            </div>
                         </div>
-                        </div>
+                        
+                        @error('salary')
+                            <p class="text-xs text-red-500 font-semibold">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
+
+            {{-- @if($errors->any())
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li class="text-red-500 italic">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif --}}
         </div>
     
         <div class="mt-6 flex items-center justify-end gap-x-6">
