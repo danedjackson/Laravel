@@ -12,7 +12,7 @@ class Job extends Model{
     protected $table = 'job_listings';
 
     // list of all columns that can be mass assigned
-    protected $fillable = ['title', 'salary'];
+    protected $fillable = ['employer_id', 'title', 'salary'];
 
     public function employer(){
         return $this->belongsTo(Employer::class);

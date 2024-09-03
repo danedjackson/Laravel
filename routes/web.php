@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::get('/jobs', function() {
     // Eager loading
-    $jobs = Job::with('employer')->paginate(5);
+    $jobs = Job::with('employer')->latest()->paginate(5);
 
     // Lazy Loading
     // $jobs = Job::all();
@@ -17,11 +17,26 @@ Route::get('/jobs', function() {
     if(!$jobs) {
         abort(404);
     }
-    return view('jobs', [
+    return view('jobs/index', [
         'jobs' => $jobs
     ]);
 });
 
+Route::get('jobs/create', function() {
+    return view('jobs/create');
+});
+
+Route::post('/jobs', function() {
+    //Validations here
+
+    Job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1
+    ]);
+
+    return redirect('/jobs');
+});
 
 Route::get('/job/{id}', function ($id) {
 
@@ -36,7 +51,7 @@ Route::get('/job/{id}', function ($id) {
         abort(404);
     }
 
-    return view('job', ['job' => $job]);
+    return view('jobs/show', ['job' => $job]);
 });
 
 Route::get('/about', function () {
